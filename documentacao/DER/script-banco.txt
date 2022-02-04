@@ -1,0 +1,412 @@
+CREATE DATABASE intranet
+  WITH OWNER = postgres
+       ENCODING = 'LATIN1'
+       TABLESPACE = pg_default;
+
+CREATE SCHEMA public
+  AUTHORIZATION postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO public;
+COMMENT ON SCHEMA public IS 'Standard public schema';
+
+CREATE TABLE aluno
+(
+  cod_aluno serial NOT NULL,
+  cod_pessoa int4 NOT NULL,
+  cod_curso char(15) NOT NULL,
+  CONSTRAINT cod_aluno PRIMARY KEY (cod_aluno),
+  CONSTRAINT cod_pessoa FOREIGN KEY (cod_pessoa) REFERENCES pessoa (cod_pessoa) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE aluno OWNER TO postgres;
+
+CREATE TABLE arquivo
+(
+  cod_arquivo serial NOT NULL,
+  cod_material int4 NOT NULL,
+  arquivo bytea NOT NULL,
+  tipo_arquivo char(3) NOT NULL,
+  CONSTRAINT cod_arquivo PRIMARY KEY (cod_arquivo),
+  CONSTRAINT cod_material FOREIGN KEY (cod_material) REFERENCES material_apoio (cod_material) ON UPDATE RESTRICT ON DELETE RESTRICT,
+  CONSTRAINT tipoarquivo FOREIGN KEY (tipo_arquivo) REFERENCES tipoarquivo (tipoarquivo) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE arquivo OWNER TO postgres;
+
+
+
+CREATE TABLE banco_questoes
+(
+  cod_banco_questoes serial NOT NULL,
+  cod_disciplina_virtual int4 NOT NULL,
+  CONSTRAINT cod_banco_questoes PRIMARY KEY (cod_banco_questoes),
+  CONSTRAINT cod_disciplina_virtual FOREIGN KEY (cod_disciplina_virtual) REFERENCES disciplina_virtual (cod_disciplina_virtual) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE banco_questoes OWNER TO postgres;
+
+
+CREATE TABLE biblioteca_digital
+(
+  cod_monografia serial NOT NULL,
+  titulo_monografia char(100) NOT NULL,
+  conteudo_monografia char(100) NOT NULL,
+  autor_monografia char(100) NOT NULL,
+  assunto_monografia char(100) NOT NULL,
+  arquivo bytea NOT NULL,
+  data_insercao date NOT NULL,
+  tipo_arquivo char(3) NOT NULL,
+  cod_coordenacao char(15) NOT NULL,
+  CONSTRAINT cod_monografia PRIMARY KEY (cod_monografia),
+  CONSTRAINT cod_coordenacao FOREIGN KEY (cod_coordenacao) REFERENCES coordenacao (cod_coordenacao) ON UPDATE RESTRICT ON DELETE RESTRICT,
+  CONSTRAINT tipoarquivo FOREIGN KEY (tipo_arquivo) REFERENCES tipoarquivo (tipoarquivo) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE biblioteca_digital OWNER TO postgres;
+
+CREATE TABLE coordenacao
+(
+  cod_coordenacao char(15) NOT NULL,
+  nome_coordenador char(100) NOT NULL,
+  cod_departamento char(15) NOT NULL,
+  nome_coordenacao char(25) NOT NULL,
+  cod_pessoa int4 NOT NULL,
+  CONSTRAINT cod_coordenador PRIMARY KEY (cod_coordenacao),
+  CONSTRAINT cod_departamento FOREIGN KEY (cod_departamento) REFERENCES departamento (cod_departamento) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE coordenacao OWNER TO postgres;
+
+CREATE TABLE cronograma
+(
+  cod_cronograma serial NOT NULL,
+  data_tarefa date NOT NULL,
+  data_limite date NOT NULL,
+  titulo_tarefa char(100) NOT NULL,
+  conteudo_tarefa char(500) NOT NULL,
+  cod_disciplina_virtual int4 NOT NULL,
+  arquivo bytea,
+  cod_pessoa int4 NOT NULL,
+  cod_professor int4,
+  tipo_arquivo char(3),
+  CONSTRAINT cod_cronograma PRIMARY KEY (cod_cronograma),
+  CONSTRAINT cod_disciplina_virtual FOREIGN KEY (cod_disciplina_virtual) REFERENCES disciplina_virtual (cod_disciplina_virtual) ON UPDATE RESTRICT ON DELETE RESTRICT,
+  CONSTRAINT cod_pessoa FOREIGN KEY (cod_pessoa) REFERENCES pessoa (cod_pessoa) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE cronograma OWNER TO postgres;
+
+
+CREATE TABLE curso
+(
+  cod_curso char(15) NOT NULL,
+  cod_versao_curso char(50) NOT NULL,
+  nome_curso char(20),
+  cod_coordenacao char(15) NOT NULL,
+  CONSTRAINT cod_curso PRIMARY KEY (cod_curso),
+  CONSTRAINT cod_coordenacao FOREIGN KEY (cod_coordenacao) REFERENCES coordenacao (cod_coordenacao) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+
+
+CREATE TABLE curso_disciplina
+(
+  cod_curso_disciplina serial NOT NULL,
+  cod_curso char(15) NOT NULL,
+  cod_disciplina char(15) NOT NULL,
+  CONSTRAINT cod_curso_disciplina PRIMARY KEY (cod_curso_disciplina),
+  CONSTRAINT cod_curso FOREIGN KEY (cod_curso) REFERENCES curso (cod_curso) ON UPDATE RESTRICT ON DELETE RESTRICT,
+  CONSTRAINT cod_disciplina FOREIGN KEY (cod_disciplina) REFERENCES disciplina (cod_disciplina) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE curso_disciplina OWNER TO postgres;
+
+CREATE TABLE departamento
+(
+  cod_departamento char(15) NOT NULL,
+  nome_departamento char(100) NOT NULL,
+  cod_pessoa int4 NOT NULL,
+  chefe_departamento char(50),
+  CONSTRAINT cod_departamento PRIMARY KEY (cod_departamento)
+) 
+WITH OIDS;
+ALTER TABLE departamento OWNER TO postgres;
+
+CREATE TABLE disc_virtual_matriculado
+(
+  cod_disc_matriculado serial NOT NULL,
+  cod_disciplina_virtual int4 NOT NULL,
+  cod_matriculado int4 NOT NULL,
+  projeto_mono char(1) NOT NULL,
+  CONSTRAINT cod_disc_matriculado PRIMARY KEY (cod_disc_matriculado),
+  CONSTRAINT cod_disciplina_virtual FOREIGN KEY (cod_disciplina_virtual) REFERENCES disciplina_virtual (cod_disciplina_virtual) ON UPDATE RESTRICT ON DELETE RESTRICT,
+  CONSTRAINT matriculado_pkey FOREIGN KEY (cod_matriculado) REFERENCES matriculado (cod_matriculado) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE disc_virtual_matriculado OWNER TO postgres;
+
+CREATE TABLE disciplina
+(
+  cod_disciplina char(15) NOT NULL,
+  nome_disciplina char(100) NOT NULL,
+  periodo_disciplina char(100) NOT NULL,
+  cod_departamento char(15) NOT NULL,
+  CONSTRAINT cod_disciplina PRIMARY KEY (cod_disciplina),
+  CONSTRAINT cod_departamento FOREIGN KEY (cod_departamento) REFERENCES departamento (cod_departamento) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE disciplina OWNER TO postgres;
+
+CREATE TABLE disciplina_virtual
+(
+  cod_disciplina_virtual serial NOT NULL,
+  nome_disciplina_virtual char(100) NOT NULL,
+  cod_turma char(15),
+  cod_professor int4,
+  CONSTRAINT cod_disciplina_virtual PRIMARY KEY (cod_disciplina_virtual),
+  CONSTRAINT professor FOREIGN KEY (cod_professor) REFERENCES professor (cod_professor) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE disciplina_virtual OWNER TO postgres;
+
+CREATE TABLE edital
+(
+  cod_edital serial NOT NULL,
+  titulo_edital char(100) NOT NULL,
+  conteudo_edital char(1000) NOT NULL,
+  data_insercao date NOT NULL,
+  data_validade date NOT NULL,
+  cod_pessoa int4 NOT NULL,
+  CONSTRAINT cod_edital PRIMARY KEY (cod_edital),
+  CONSTRAINT cod_pessoa FOREIGN KEY (cod_pessoa) REFERENCES pessoa (cod_pessoa) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE edital OWNER TO postgres;
+
+CREATE TABLE edital_disciplina
+(
+  cod_edital_disciplina serial NOT NULL,
+  titulo_edital char(100) NOT NULL,
+  conteudo_edital char(1000) NOT NULL,
+  data_insercao date NOT NULL,
+  data_validade date NOT NULL,
+  cod_disciplina_virtual int4 NOT NULL,
+  arquivo bytea,
+  tipo_arquivo char(3),
+  CONSTRAINT cod_edital_disciplina PRIMARY KEY (cod_edital_disciplina),
+  CONSTRAINT cod_disciplina_virtual FOREIGN KEY (cod_disciplina_virtual) REFERENCES disciplina_virtual (cod_disciplina_virtual) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE edital_disciplina OWNER TO postgres;
+
+CREATE TABLE formdocs
+(
+  cod_form serial NOT NULL,
+  titulo char(100) NOT NULL,
+  conteudo char(1000) NOT NULL,
+  data_insercao date NOT NULL,
+  data_validade date NOT NULL,
+  cod_pessoa int4 NOT NULL,
+  cod_destinatario int4 NOT NULL,
+  tipo_destinatario char(15) NOT NULL,
+  arquivo bytea,
+  tipo_arquivo char(3),
+  CONSTRAINT cod_form PRIMARY KEY (cod_form),
+  CONSTRAINT cod_pessoa FOREIGN KEY (cod_pessoa) REFERENCES pessoa (cod_pessoa) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE formdocs OWNER TO postgres;
+
+CREATE TABLE forum
+(
+  cod_topico serial NOT NULL,
+  titulo_topico char(100) NOT NULL,
+  data_insercao date NOT NULL,
+  conteudo_topico char(1000) NOT NULL,
+  cod_disciplina_virtual int4 NOT NULL,
+  CONSTRAINT cod_topico PRIMARY KEY (cod_topico),
+  CONSTRAINT cod_disciplina_virtual FOREIGN KEY (cod_disciplina_virtual) REFERENCES disciplina_virtual (cod_disciplina_virtual) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE forum OWNER TO postgres;
+
+CREATE TABLE grade
+(
+  cod_grade serial NOT NULL,
+  nome_grade char(100) NOT NULL,
+  cod_curso char(15) NOT NULL,
+  CONSTRAINT cod_grade PRIMARY KEY (cod_grade),
+  CONSTRAINT cod_curso FOREIGN KEY (cod_curso) REFERENCES curso (cod_curso) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE grade OWNER TO postgres;
+
+CREATE TABLE grade_disciplina
+(
+  cod_grade int4 NOT NULL,
+  cod_grade_disciplina serial NOT NULL,
+  cod_curso_disc int4 NOT NULL,
+  CONSTRAINT cod_grade_disciplina PRIMARY KEY (cod_grade_disciplina),
+  CONSTRAINT cod_curso_disciplina FOREIGN KEY (cod_curso_disc) REFERENCES curso_disciplina (cod_curso_disciplina) ON UPDATE RESTRICT ON DELETE RESTRICT,
+  CONSTRAINT cod_grade FOREIGN KEY (cod_grade) REFERENCES grade (cod_grade) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE grade_disciplina OWNER TO postgres;
+
+CREATE TABLE link
+(
+  cod_link serial NOT NULL,
+  cod_material int4 NOT NULL,
+  endereco_links char(1000) NOT NULL,
+  CONSTRAINT cod_link PRIMARY KEY (cod_link),
+  CONSTRAINT cod_material FOREIGN KEY (cod_material) REFERENCES material_apoio (cod_material) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE link OWNER TO postgres;
+
+CREATE TABLE material_apoio
+(
+  cod_material serial NOT NULL,
+  titulo_material char(100) NOT NULL,
+  conteudo_material char(1000) NOT NULL,
+  data_insercao date NOT NULL,
+  tipo_material char(15) NOT NULL,
+  cod_disciplina_virtual int4 NOT NULL,
+  CONSTRAINT cod_material PRIMARY KEY (cod_material),
+  CONSTRAINT cod_disciplina_virtual FOREIGN KEY (cod_disciplina_virtual) REFERENCES disciplina_virtual (cod_disciplina_virtual) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE material_apoio OWNER TO postgres;
+
+CREATE TABLE matriculado
+(
+  cod_aluno int4 NOT NULL,
+  cod_turma char(15) NOT NULL,
+  cod_disciplina char(15) NOT NULL,
+  cod_pessoa int4 NOT NULL,
+  cod_matriculado serial NOT NULL,
+  CONSTRAINT matriculado_pkey PRIMARY KEY (cod_matriculado),
+  CONSTRAINT cod_aluno FOREIGN KEY (cod_aluno) REFERENCES aluno (cod_aluno) ON UPDATE RESTRICT ON DELETE RESTRICT,
+  CONSTRAINT cod_turma FOREIGN KEY (cod_turma) REFERENCES turma (cod_turma) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE matriculado OWNER TO postgres;
+
+CREATE TABLE perguntas
+(
+  cod_pergunta serial NOT NULL,
+  pergunta char(100) NOT NULL,
+  resposta_certa char(100) NOT NULL,
+  resposta_errada1 char(100) NOT NULL,
+  resposta_errada2 char(100) NOT NULL,
+  resposta_errada3 char(100) NOT NULL,
+  resposta_errada4 char(100) NOT NULL,
+  cod_banco_questoes int4 NOT NULL,
+  conteudo_resposta char(100) NOT NULL,
+  status char(1) NOT NULL,
+  CONSTRAINT cod_pergunta PRIMARY KEY (cod_pergunta),
+  CONSTRAINT cod_banco_questoes FOREIGN KEY (cod_banco_questoes) REFERENCES banco_questoes (cod_banco_questoes) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE perguntas OWNER TO postgres;
+
+CREATE TABLE pessoa
+(
+  cod_pessoa serial NOT NULL,
+  nome_pessoa char(100) NOT NULL,
+  nasc_pessoa date,
+  usuario char(15) NOT NULL,
+  senha char(60) NOT NULL,
+  tipopessoa char(5) NOT NULL,
+  CONSTRAINT cod_pessoa PRIMARY KEY (cod_pessoa),
+  CONSTRAINT pessoa_tipopessoa_fkey FOREIGN KEY (tipopessoa) REFERENCES tipopessoa (tipopessoa) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE pessoa OWNER TO postgres;
+
+CREATE TABLE post
+(
+  cod_post serial NOT NULL,
+  post char(1000) NOT NULL,
+  data_insercao date NOT NULL,
+  cod_topico int4 NOT NULL,
+  cod_pessoa int4 NOT NULL,
+  CONSTRAINT cod_post PRIMARY KEY (cod_post),
+  CONSTRAINT cod_topico FOREIGN KEY (cod_topico) REFERENCES forum (cod_topico) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE post OWNER TO postgres;
+
+CREATE TABLE professor
+(
+  cod_professor serial NOT NULL,
+  cod_departamento char(15) NOT NULL,
+  titulacao_professor char(100),
+  cod_pessoa int4 NOT NULL,
+  CONSTRAINT cod_professor PRIMARY KEY (cod_professor),
+  CONSTRAINT cod_departamento FOREIGN KEY (cod_departamento) REFERENCES departamento (cod_departamento) ON UPDATE RESTRICT ON DELETE RESTRICT,
+  CONSTRAINT cod_pessoa FOREIGN KEY (cod_pessoa) REFERENCES pessoa (cod_pessoa) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE professor OWNER TO postgres;
+
+CREATE TABLE respostas
+(
+  cod_resposta serial NOT NULL,
+  cod_pergunta int4 NOT NULL,
+  cod_aluno int4 NOT NULL,
+  resposta_selecionada char(1),
+  CONSTRAINT cod_resposta PRIMARY KEY (cod_resposta),
+  CONSTRAINT cod_pergunta FOREIGN KEY (cod_pergunta) REFERENCES perguntas (cod_pergunta) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE respostas OWNER TO postgres;
+
+CREATE TABLE tarefa_alunos
+(
+  cod_tarefa serial NOT NULL,
+  cod_aluno int4 NOT NULL,
+  data_insercao date NOT NULL,
+  cod_cronograma int4 NOT NULL,
+  status char(1) NOT NULL,
+  arquivo bytea,
+  tipoarquivo char(3),
+  CONSTRAINT cod_tarefa PRIMARY KEY (cod_tarefa),
+  CONSTRAINT cod_cronograma FOREIGN KEY (cod_cronograma) REFERENCES cronograma (cod_cronograma) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE tarefa_alunos OWNER TO postgres;
+
+CREATE TABLE tipoarquivo
+(
+  tipoarquivo char(3) NOT NULL,
+  descricao char(25) NOT NULL,
+  CONSTRAINT tipoarquivo_pkey PRIMARY KEY (tipoarquivo)
+) 
+WITHOUT OIDS;
+ALTER TABLE tipoarquivo OWNER TO postgres;
+
+CREATE TABLE tipopessoa
+(
+  tipopessoa char(5) NOT NULL,
+  descricao char(25) NOT NULL,
+  CONSTRAINT tipopessoa_pkey PRIMARY KEY (tipopessoa)
+) 
+WITHOUT OIDS;
+ALTER TABLE tipopessoa OWNER TO postgres;
+
+CREATE TABLE turma
+(
+  cod_turma char(15) NOT NULL,
+  nome_turma char(50) NOT NULL,
+  sala char(50) NOT NULL,
+  horario char(50) NOT NULL,
+  cod_grade_disc int4 NOT NULL,
+  cod_professor int4 NOT NULL,
+  CONSTRAINT cod_turma PRIMARY KEY (cod_turma),
+  CONSTRAINT cod_grade_disc FOREIGN KEY (cod_grade_disc) REFERENCES grade_disciplina (cod_grade_disciplina) ON UPDATE RESTRICT ON DELETE RESTRICT,
+  CONSTRAINT cod_professor FOREIGN KEY (cod_professor) REFERENCES professor (cod_professor) ON UPDATE RESTRICT ON DELETE RESTRICT
+) 
+WITH OIDS;
+ALTER TABLE turma OWNER TO postgres;
+

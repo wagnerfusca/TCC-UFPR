@@ -1,0 +1,206 @@
+/* *** CSS INTRANET COPEL 21/07/2004 *** */
+
+/* *** BODY *** */
+a:link { COLOR: #660000; FONT-FAMILY: Arial, Tahoma, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+a:visited { COLOR: #660000; FONT-FAMILY: Arial, Tahoma, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+a:hover { COLOR: #666; FONT-FAMILY: Arial, Tahoma, Verdana, Helvetica, sans-serif; TEXT-DECORATION: underline; }
+a:active { COLOR: #660000; FONT-FAMILY: Arial, Tahoma, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+.maozinha { cursor: hand; }
+/*  - - - - -  */
+
+/* *** FORM-#BARRA SUPERIOR, #FORMPESQUISANOTICIA *** */
+.formularioLargura { FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 9px; COLOR: #666666; width: 117px; }
+.formulario { FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 9px; COLOR: #666666; }
+/*  - - - - -  */
+
+/* *** MENU *** */
+.style1 { 
+   font-family: Tahoma, Arial, Verdana, Helvetica, sans-serif;
+   font-weight: normal; 
+   font-size: 11px; 
+   color: #666; 
+   letter-spacing: 1px; 
+   cursor: hand; 
+}
+.style1 a:link { 
+   font-family: Tahoma, Arial, Verdana, Helvetica, sans-serif;
+   font-weight: normal; 
+   font-size: 11px; 
+   color: #660000; 
+   letter-spacing: 1px; 
+   cursor: hand;
+   TEXT-DECORATION: none; 
+}
+.style1 a:visited { 
+   font-family: Tahoma, Arial, Verdana, Helvetica, sans-serif;
+   font-weight: normal; 
+   font-size: 11px; 
+   color: #660000; 
+   letter-spacing: 1px; 
+   cursor: hand;
+   TEXT-DECORATION: none; 
+}
+
+.style1 a:hover { 
+   font-family: Tahoma, Arial, Verdana, Helvetica, sans-serif;
+   font-weight: normal; 
+   font-size: 11px; 
+   color: #666; 
+   letter-spacing: 1px; 
+   cursor: hand;
+   TEXT-DECORATION: underline; 
+}
+
+.style2 { 
+   font-family: Tahoma, Arial, Verdana, Helvetica, sans-serif; 
+   font-weight: bold; 
+   letter-spacing: 0px;
+   font-size: 11px; 
+   color: #666; 
+}
+/*  - - - - -  */
+
+/* *** TEXTOS *** */
+.destaque_central { font-weight: normal; FONT-SIZE: 12px; COLOR: #666; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+.destaque_central a:link { font-weight: normal; FONT-SIZE: 10px; COLOR: #660000; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: underline; }
+.destaque_central a:visited { font-weight: normal; FONT-SIZE: 10px; COLOR: #660000; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: underline; }
+.destaque_central a:hover { font-weight: normal; FONT-SIZE: 10px; COLOR: #333; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+
+.titulo { font-weight: bold; FONT-SIZE: 13px; COLOR: #666; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+.titulo a:link { font-weight: bold; FONT-SIZE: 13px; COLOR: #660000; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+.titulo a:visited { font-weight: bold; FONT-SIZE: 13px; COLOR: #660000; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+.titulo a:hover { font-weight: bold; FONT-SIZE: 13px; COLOR: #666; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: underline; }
+
+.texto { font-weight: normal; FONT-SIZE: 12px; COLOR: #666; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+.texto a:link { font-weight: normal; FONT-SIZE: 12px; COLOR: #666; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: underline; }
+.texto a:visited { font-weight: normal; FONT-SIZE: 12px; COLOR: #666; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: underline; }
+.texto a:hover { font-weight: normal; FONT-SIZE: 12px; COLOR: #660000; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+
+.titulodestaquemenor { font-weight: normal; FONT-SIZE: 20px; COLOR: #666; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+
+.chamada { font-weight: normal; FONT-SIZE: 11px; letter-spacing: 1px; COLOR: #666; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+.chamada a:link{ font-weight: normal; FONT-SIZE: 11px; letter-spacing: 1px; COLOR: #660000; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION:  underline; }
+.chamada a:visited { font-weight: normal; FONT-SIZE: 11px; letter-spacing: 1px; COLOR: #660000; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION:  underline; }
+.chamada a:hover { font-weight: normal; FONT-SIZE: 11px; letter-spacing: 1px; COLOR: #666; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION:  none; }
+/*  - - - - - -  */
+
+/* *** CALENDARIO *** */
+.calendario {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	text-decoration: none;
+	background-position: center center;
+	text-align: center;
+	vertical-align: middle;
+}
+/*  - - - - -  */
+
+.formulalog { 
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; 
+	FONT-SIZE: 9px; COLOR: #666666; width: 195px; height: 25px; }
+.formulalog2 { 
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; 
+	FONT-SIZE: 9px; COLOR: #666666; width: 195px; height: 22px; }
+.formulalog3 { 
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; 
+	FONT-SIZE: 9px; COLOR: #666666; width: 78px; height: 26px; }
+.formulalog4 { 
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; 
+	FONT-SIZE: 9px; COLOR: #666666; width: 70px; height: 26px; }
+
+/* ********************************************************* */
+/* ********************************************************* */
+/* ********************************************************* */
+/* ********************************************************* */
+
+/* * INICIO DO CSS UTILIZADO NOS MOLDES DE MENU * */
+/* 
+:: Desenvolvido por:  
+.: Erick Salles. Dia 12/11/2004
+*/
+/* - - - - - - - - - - - - - - - - - - - */
+
+/* - - MENU IMAGEM LATERAL DOIS - - */
+#navlilatd{/* */
+	padding-left: 0;/* Zera o padding */
+	margin-left: 20;/* distancia da margem da lista  */
+	width: 250px;}/* largura da lista  */
+#navlilatd li{/*formata a lista = <li>*/
+	list-style: none;/* Desabilita os Bullets */
+	margin: 0;/* Zera as margens */
+	padding: 3;/* espaçamento entre elementos */
+	border-bottom: 1px solid #999;}/* borda somente na parte inferior */
+#navlilatd li a { text-decoration: none; }/* o link n ficara sublinhado */
+/* *** FINAL DO MENU  *** */
+
+
+
+/* - - MENU IMAGEM LATERAL - - */
+#navlilat{/* */
+	padding-left: 0;/* Zera o padding */
+	margin-left: 12;/* distancia da margem da lista  */
+	width: 200px;}/* largura da lista  */
+#navlilat li{/*formata a lista = <li>*/
+	list-style: none;/* Desabilita os Bullets */
+	margin: 0;/* Zera as margens */
+	padding: 3;/* espaçamento entre elementos */
+	border-bottom: 1px solid #999;}/* borda somente na parte inferior */
+#navlilat li a { text-decoration: none; }/* o link n ficara sublinhado */
+/* *** FINAL DO MENU  *** */
+
+/* - - MENU UMA COLUNA - - */
+#navum{/* */
+	padding-left: 0;/* Zera o padding */
+	margin-left: 5;/* distancia da margem da lista  */
+	width: 260px;}/* largura da lista  */
+#navum li{/*formata a lista = <li>*/
+	list-style: none;/* Desabilita os Bullets */
+	margin: 0;/* Zera as margens */
+	padding: 0.50em;/* espaçamento entre elementos */
+	border-bottom: 1px solid #999;}/* borda somente na parte inferior */
+#navum li a { text-decoration: none; }/* o link n ficara sublinhado */
+/* *** FINAL DO MENU  *** */
+
+
+/* - - MENU DUAS COLUNAS - - */
+#navlist{/* */
+	padding-left: 0;/* Zera o padding */
+	margin-left: 10;/* distancia da margem da lista  */
+	width: 230px;}/* largura da lista  */
+#navlist li{/*formata a lista = <li>*/
+	list-style: none;/* Desabilita os Bullets */
+	margin: 0;/* Zera as margens */
+	padding: 0.50em;/* espaçamento entre elementos */
+	border-bottom: 1px solid #999;}/* borda somente na parte inferior */
+#navlist li a { text-decoration: none; }/* o link n ficara sublinhado */
+/* *** FINAL DO MENU  *** */
+
+/* - - Class do Menu - - */
+/*Class para o texto*/
+.texto { font-weight: normal; FONT-SIZE: 12px; COLOR: #660000; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+.texto a:link { font-weight: normal; FONT-SIZE: 12px; COLOR: #660000; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+.texto a:visited { font-weight: normal; FONT-SIZE: 12px; COLOR: #660000; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+.texto a:hover { font-weight: normal; FONT-SIZE: 12px; COLOR: #666; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+/*Class para o titulo*/
+.tit_secao { font-weight: bold; FONT-SIZE: 13px; COLOR: #333; letter-spacing: 0.03em; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+.tit_secao a:link { font-weight: bold; FONT-SIZE: 13px; COLOR: #660000; letter-spacing: 0.03em; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+.tit_secao a:visited { font-weight: bold; FONT-SIZE: 13px; COLOR: #660000; letter-spacing: 0.03em; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+.tit_secao a:hover { font-weight: bold; FONT-SIZE: 13px; COLOR: #666; letter-spacing: 0.03em; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: underline; }
+/*Class para o titulo documento*/
+.tit_doc { font-weight: bold; FONT-SIZE: 13px; COLOR: #666; letter-spacing: 0.03em; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+.tit_doc a:link { font-weight: bold; FONT-SIZE: 13px; COLOR: #660000; letter-spacing: 0.03em; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+.tit_doc a:visited { font-weight: bold; FONT-SIZE: 13px; COLOR: #660000; letter-spacing: 0.03em; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: none; }
+.tit_doc a:hover { font-weight: bold; FONT-SIZE: 13px; COLOR: #999; letter-spacing: 0.03em; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; TEXT-DECORATION: underline; }
+
+/* *** FINAL DA CLASS  *** */
+
+/* ***  FINAL DO CSS INTRANET COPEL  *** */
+/* - - - - - - - - - - - - - - - - - - - */
+/* 
+:: Desenvolvido por:  
+.: Flavio Milsztajn.
+.: Erick Salles.
+.: Jose Ramalho de Lima Neto. 
+*/
+/* - - - - - - - - - - - - - - - - - - - */
